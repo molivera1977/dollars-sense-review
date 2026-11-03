@@ -861,6 +861,9 @@ const app = {
     const set = this._teacherSet();
     const bank = sectionBank(section, set);
     document.getElementById('key-title').textContent = `✅ Answer key · ${SECTION_LABELS[section]} · Set ${set} · Dollars and Sense Review`;
+    // the printed packet's title (🖨️ Print hides the bar above): what it is, which part and set, how many
+    document.getElementById('key-print-head').innerHTML =
+      `<h1>Dollars and Sense Review — Answer Key</h1><p>${escapeHtml(SECTION_LABELS[section])} · Set ${set} (try ${set === 1 ? '1' : '2'}) · ${bank.length} questions · the right answer is marked ✅</p>`;
     document.getElementById('key-body').innerHTML = bank.map((q, k) => {
       const choices = `<ol class="key-choices" type="A">${q.choices.map((c, i) =>
         `<li class="${i === q.answer ? 'key-right' : ''}">${escapeHtml(c)}${i === q.answer ? ' ✅' : ''}</li>`).join('')}</ol>`;
