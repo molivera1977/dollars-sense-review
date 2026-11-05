@@ -10,7 +10,7 @@
 ═══════════════════════════════════════════════════════ */
 
 /* ── CONFIG ─────────────────────────────────────────── */
-const REVIEW_OPEN   = false;   // false = students locked out; only Teacher Access works. Set true to open (Marcos says when).
+const REVIEW_OPEN   = true;    // OPEN 11/5 (Marcos: "put Dollars and Sense live"). false = students locked out; only Teacher Access works.
 /* TEST DAY (Marcos 10/23: "On test day, [the review] page should be locked unless unlocked by
    teacher pin"). On these dates (New York time) the review is closed to students; the Teacher PIN
    opens it on THIS computer for the rest of the day. Keep the same list in the front door
