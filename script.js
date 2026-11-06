@@ -344,12 +344,22 @@ function choiceHtml(text) {
   return text.replace(/—/g, ' — ');
 }
 
+/* Finished tries the sheet has but a Chromebook may not (finished on another Chromebook, or its saved data was
+   cleared). Each counts as a done try on any Chromebook, but never twice beside the same try saved there.
+   Marcos 11/6: "i want her vocab to show completed" — sheet row DSR-7G2D0AB-vocab-A1, 24/24, done. */
+const SHEET_DONE = [
+  { name: 'Flores, Kiara', section: 'vocab', attempt: 1 }
+];
+
 function getSectionAttempts(name) {
   const scores = JSON.parse(localStorage.getItem(SCORES_KEY) || '[]');
   const counts = { vocab: 0, comp: 0, cloze: 0 };
-  scores.filter(s => s.name === name && s.done).forEach(s => {
+  const mine   = scores.filter(s => s.name === name && s.done);
+  mine.forEach(s => {
     if (counts[s.section] !== undefined) counts[s.section]++;
   });
+  SHEET_DONE.filter(c => c.name === name && !mine.some(s => s.section === c.section && s.attempt === c.attempt))
+    .forEach(c => { if (counts[c.section] !== undefined) counts[c.section]++; });
   return counts;
 }
 
