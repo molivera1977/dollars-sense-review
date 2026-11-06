@@ -15,7 +15,7 @@ const REVIEW_OPEN   = true;    // OPEN 11/5 (Marcos: "put Dollars and Sense live
    teacher pin"). On these dates (New York time) the review is closed to students; the Teacher PIN
    opens it on THIS computer for the rest of the day. Keep the same list in the front door
    (class-portal/dollars-and-sense/index.html). */
-const TEST_DAYS     = ['2026-11-06'];   // Marcos 11/3: the Dollars and Sense test is Friday 11/6
+const TEST_DAYS     = [];   // no test day set (Marcos 11/6: "we're a day behind. no test today" — was Fri 11/6); put the new date here AND in class-portal/dollars-and-sense/index.html
 const UNLOCK_KEY    = 'ds_review_unlock_v1';   // = today's date once the Teacher PIN opened it here
 function todayNY() { return new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' }); }
 function isTestDayLocked() {
