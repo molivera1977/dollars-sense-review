@@ -877,9 +877,13 @@ const app = {
     // the printed packet's title (🖨️ Print hides the bar above): what it is, which part and set, how many
     document.getElementById('key-print-head').innerHTML =
       `<h1>Dollars and Sense Review — Answer Key</h1><p>${escapeHtml(SECTION_LABELS[section])} · Set ${set} (try ${set === 1 ? '1' : '2'}) · ${bank.length} questions · the right answer is marked ✅</p>`;
-    document.getElementById('key-body').innerHTML = bank.map((q, k) => {
-      const choices = `<ol class="key-choices" type="A">${q.choices.map((c, i) =>
-        `<li class="${i === q.answer ? 'key-right' : ''}">${escapeHtml(c)}${i === q.answer ? ' ✅' : ''}</li>`).join('')}</ol>`;
+    // No letters (Marcos 11/15: "switch to bullets"; as on Math Module 3, the Lab and The Talent Show): each child sees
+    // the choices in a shuffled order, so a letter here would match no child's screen.
+    document.getElementById('key-body').innerHTML =
+      `<p class="key-note">Each child sees the choices in a shuffled order, so there are no letters here. The right answer has a ✅.</p>` +
+      bank.map((q, k) => {
+      const choices = `<ul class="key-choices">${q.choices.map((c, i) =>
+        `<li class="${i === q.answer ? 'key-right' : ''}">${escapeHtml(c)}${i === q.answer ? ' ✅' : ''}</li>`).join('')}</ul>`;
       return `<div class="key-q"><p class="key-where">${q.id} · Question ${k + 1} of ${bank.length}</p>` +
         `<p class="key-ask">${q.q}</p>${choices}</div>`;
     }).join('');
